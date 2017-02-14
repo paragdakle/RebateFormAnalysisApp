@@ -17,6 +17,7 @@ namespace Asg3_pxd160530
         Dictionary<string, Buyer> buyerDictionary;
         Dictionary<int, AnalysisResultItem> analysisResultDictionary;
         string buyerFileName = "";
+        int hasAddedRecord = 0;
 
         public Form1()
         {
@@ -30,17 +31,33 @@ namespace Asg3_pxd160530
             ctlFilePath.Text = "";
             ctlOpenFileBrowser.Enabled = true;
             ctlSaveFileAnalysis.Enabled = false;
+            ctlFilePath.Focus();
+            if(hasAddedRecord == 0)
+            {
+                lblStep1.Font = new Font(lblStep1.Font, FontStyle.Bold);
+                hasAddedRecord++;
+            }
         }
 
         private void ctlOpenFile_Click(object sender, EventArgs e)
         {
+            if (hasAddedRecord == 4)
+            {
+                lblNotes.Font = new Font(lblNotes.Font, FontStyle.Regular);
+                hasAddedRecord = 5;
+            }
             DialogResult result = ctlOpenFileDialog.ShowDialog();
             if(result == DialogResult.OK)
             {
                 if (!String.IsNullOrWhiteSpace(ctlOpenFileDialog.FileName))
                 {
                     ctlFilePath.Text = ctlOpenFileDialog.FileName;
-                    
+                    if (hasAddedRecord == 1)
+                    {
+                        lblStep1.Font = new Font(lblStep1.Font, FontStyle.Regular);
+                        lblStep2.Font = new Font(lblStep2.Font, FontStyle.Bold);
+                        hasAddedRecord++;
+                    }
                 }
             }
         }
@@ -85,10 +102,10 @@ namespace Asg3_pxd160530
         /// <see cref="RecordManager{S, T}"/>
         /// <seealso cref="RecordManager{S, T}.readAllRecords"/>
         /// </summary>
-        private void loadRecords(string filePath)
+        private bool loadRecords(string filePath)
         {
             if (String.IsNullOrWhiteSpace(filePath))
-                return;
+                return false;
             showMessage("Opening File..");
             RecordManager<string, Buyer> manager = new RecordManager<string, Buyer>(filePath);
             showMessage("Loading Records...");
@@ -101,11 +118,12 @@ namespace Asg3_pxd160530
                 {
                     showError("Loaded file is either corrupt or of invalid format!");
                     buyerDictionary.Clear();
-                    return;
+                    return false;
                 }
                 buyerDictionary.Add(entity.getFullName(), entity);
             }
             showMessage(buyerDictionary.Count + " record(s) loaded successfully!");
+            return true;
         }
 
         /// <summary>
@@ -172,10 +190,10 @@ namespace Asg3_pxd160530
         private void populateListView()
         {
             ctlAnalysisResultsListView.Items.Clear();
-            List<Buyer> buyerList = buyerDictionary.Values.ToList();
-            foreach (Buyer buyer in buyerList)
+            List<AnalysisResultItem> analysisResultList = analysisResultDictionary.Values.ToList();
+            foreach (AnalysisResultItem analysisResult in analysisResultList)
             {
-                string[] row = { buyer.getFullName(), buyer.phoneNumber };
+                string[] row = { analysisResult.observationLabel, analysisResult.observationStringValue };
                 var listViewItem = new ListViewItem(row);
                 try
                 {
@@ -206,12 +224,23 @@ namespace Asg3_pxd160530
 
         private void ctlSaveAnalysis_Click(object sender, EventArgs e)
         {
+            if (hasAddedRecord == 4)
+            {
+                lblNotes.Font = new Font(lblNotes.Font, FontStyle.Regular);
+                hasAddedRecord = 5;
+            }
             DialogResult result = ctlSaveFileDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
                 if (!String.IsNullOrWhiteSpace(ctlSaveFileDialog.FileName))
                 {
                     saveRecords(ctlSaveFileDialog.FileName);
+                    if (hasAddedRecord == 3)
+                    {
+                        lblStep3.Font = new Font(lblStep3.Font, FontStyle.Regular);
+                        lblNotes.Font = new Font(lblNotes.Font, FontStyle.Bold);
+                        hasAddedRecord++;
+                    }
                 }
             }
         }
@@ -223,16 +252,29 @@ namespace Asg3_pxd160530
 
         private void ctlOpenFile_Click_1(object sender, EventArgs e)
         {
-            if(String.IsNullOrWhiteSpace(buyerFileName))
+            if (hasAddedRecord == 4)
+            {
+                lblNotes.Font = new Font(lblNotes.Font, FontStyle.Regular);
+                hasAddedRecord = 5;
+            }
+            if (!String.IsNullOrWhiteSpace(buyerFileName))
             {
                 if (System.IO.File.Exists(buyerFileName))
                 {
-                    loadRecords(buyerFileName);
-                    showMessage("Analyzing Records...");
-                    loadAnalysisResults();
-                    showMessage("Analyses complete successfully!. Populating analysis...");
-                    populateListView();
-                    showMessage("Populated analysis successfully!");
+                    if (loadRecords(buyerFileName))
+                    {
+                        showMessage("Analyzing Records...");
+                        loadAnalysisResults();
+                        showMessage("Analyses complete successfully!. Populating analysis...");
+                        populateListView();
+                        showMessage("Populated analysis successfully!");
+                        if (hasAddedRecord == 2)
+                        {
+                            lblStep2.Font = new Font(lblStep2.Font, FontStyle.Regular);
+                            lblStep3.Font = new Font(lblStep3.Font, FontStyle.Bold);
+                            hasAddedRecord++;
+                        }
+                    }
                 }
                 else
                 {
@@ -248,6 +290,11 @@ namespace Asg3_pxd160530
         private void ctlFilePath_TextChanged(object sender, EventArgs e)
         {
             buyerFileName = ctlFilePath.Text;
+            if(hasAddedRecord == 4)
+            {
+                lblNotes.Font = new Font(lblNotes.Font, FontStyle.Regular);
+                hasAddedRecord = 5;
+            }
         }
     }
 }

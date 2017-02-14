@@ -37,13 +37,13 @@
             this.ctlSaveFileAnalysis = new System.Windows.Forms.Button();
             this.ctlOpenFile = new System.Windows.Forms.Button();
             this.ctlAnalysisResultsListView = new System.Windows.Forms.ListView();
-            this.lblFilePath = new System.Windows.Forms.Label();
             this.columnAnalysisLabel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnAnalysisResult = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblFilePath = new System.Windows.Forms.Label();
             this.lblInstructionsHeader = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
             this.lblStep2 = new System.Windows.Forms.Label();
-            this.lblStep4 = new System.Windows.Forms.Label();
+            this.lblStep3 = new System.Windows.Forms.Label();
             this.lblNotes = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -106,7 +106,7 @@
             this.ctlOpenFile.Location = new System.Drawing.Point(501, 8);
             this.ctlOpenFile.Name = "ctlOpenFile";
             this.ctlOpenFile.Size = new System.Drawing.Size(66, 28);
-            this.ctlOpenFile.TabIndex = 5;
+            this.ctlOpenFile.TabIndex = 3;
             this.ctlOpenFile.Text = "Open";
             this.ctlOpenFile.UseVisualStyleBackColor = true;
             this.ctlOpenFile.Click += new System.EventHandler(this.ctlOpenFile_Click_1);
@@ -124,16 +124,6 @@
             this.ctlAnalysisResultsListView.UseCompatibleStateImageBehavior = false;
             this.ctlAnalysisResultsListView.View = System.Windows.Forms.View.Details;
             // 
-            // lblFilePath
-            // 
-            this.lblFilePath.AutoSize = true;
-            this.lblFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilePath.Location = new System.Drawing.Point(10, 16);
-            this.lblFilePath.Name = "lblFilePath";
-            this.lblFilePath.Size = new System.Drawing.Size(136, 16);
-            this.lblFilePath.TabIndex = 7;
-            this.lblFilePath.Text = "Rebate Records File:";
-            // 
             // columnAnalysisLabel
             // 
             this.columnAnalysisLabel.Text = "Analysis Type";
@@ -143,6 +133,16 @@
             // 
             this.columnAnalysisResult.Text = "Value";
             this.columnAnalysisResult.Width = 100;
+            // 
+            // lblFilePath
+            // 
+            this.lblFilePath.AutoSize = true;
+            this.lblFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilePath.Location = new System.Drawing.Point(10, 16);
+            this.lblFilePath.Name = "lblFilePath";
+            this.lblFilePath.Size = new System.Drawing.Size(136, 16);
+            this.lblFilePath.TabIndex = 7;
+            this.lblFilePath.Text = "Rebate Records File:";
             // 
             // lblInstructionsHeader
             // 
@@ -174,14 +174,14 @@
             this.lblStep2.Text = "2. Open the selected file using the Open button. This will load the file for anal" +
     "ysis and populate the analysis results.";
             // 
-            // lblStep4
+            // lblStep3
             // 
-            this.lblStep4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStep4.Location = new System.Drawing.Point(417, 216);
-            this.lblStep4.Name = "lblStep4";
-            this.lblStep4.Size = new System.Drawing.Size(227, 38);
-            this.lblStep4.TabIndex = 11;
-            this.lblStep4.Text = "3. You can save the analysis results using the Save button.";
+            this.lblStep3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStep3.Location = new System.Drawing.Point(417, 216);
+            this.lblStep3.Name = "lblStep3";
+            this.lblStep3.Size = new System.Drawing.Size(227, 38);
+            this.lblStep3.TabIndex = 11;
+            this.lblStep3.Text = "3. You can save the analysis results using the Save button.";
             // 
             // lblNotes
             // 
@@ -199,7 +199,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 444);
             this.Controls.Add(this.lblNotes);
-            this.Controls.Add(this.lblStep4);
+            this.Controls.Add(this.lblStep3);
             this.Controls.Add(this.lblStep2);
             this.Controls.Add(this.lblStep1);
             this.Controls.Add(this.lblInstructionsHeader);
@@ -236,7 +236,7 @@
         private System.Windows.Forms.Label lblInstructionsHeader;
         private System.Windows.Forms.Label lblStep1;
         private System.Windows.Forms.Label lblStep2;
-        private System.Windows.Forms.Label lblStep4;
+        private System.Windows.Forms.Label lblStep3;
         private System.Windows.Forms.Label lblNotes;
     }
 }
