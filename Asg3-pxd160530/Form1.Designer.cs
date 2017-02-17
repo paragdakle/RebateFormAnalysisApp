@@ -1,6 +1,6 @@
 ﻿namespace Asg3_pxd160530
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -69,7 +69,7 @@
             this.ctlOpenFileBrowser.TabIndex = 2;
             this.ctlOpenFileBrowser.Text = "Browse";
             this.ctlOpenFileBrowser.UseVisualStyleBackColor = true;
-            this.ctlOpenFileBrowser.Click += new System.EventHandler(this.ctlOpenFile_Click);
+            this.ctlOpenFileBrowser.Click += new System.EventHandler(this.ctlOpenFileBrowse_Click);
             // 
             // statusStrip1
             // 
@@ -109,7 +109,7 @@
             this.ctlOpenFile.TabIndex = 3;
             this.ctlOpenFile.Text = "Open";
             this.ctlOpenFile.UseVisualStyleBackColor = true;
-            this.ctlOpenFile.Click += new System.EventHandler(this.ctlOpenFile_Click_1);
+            this.ctlOpenFile.Click += new System.EventHandler(this.ctlOpenFile_Click);
             // 
             // ctlAnalysisResultsListView
             // 
@@ -193,7 +193,7 @@
             this.lblNotes.Text = "Repeat the above steps for analysis different files.\r\nNote: For errors and status" +
     " details, kindly view the message on the status bar at the bottom.";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -210,9 +210,9 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ctlOpenFileBrowser);
             this.Controls.Add(this.ctlFilePath);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "MainForm";
+            this.Text = "Rebate Form Analysis";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

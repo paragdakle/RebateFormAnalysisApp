@@ -23,7 +23,7 @@ namespace Asg3_pxd160530
     class RecordManager<S, T> : IOManagerInterface<string>
     {
         /// <summary>
-        /// filePath: String constant containing the name of the file. Currently a constant buy can be changed later.
+        /// filePath: String containing the name of the file to read/write records.
         /// writer: RecordWriter object. <see cref="RecordWriter"/>
         /// reader: RecordReader object. <see cref="RecordReader"/>
         /// </summary>
@@ -31,6 +31,10 @@ namespace Asg3_pxd160530
         RecordWriter writer;
         RecordReader reader;
 
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
+        /// <param name="filePath">The path of the file to use for performing operations on the records.</param>
         public RecordManager(string filePath)
         {
             this.filePath = filePath;

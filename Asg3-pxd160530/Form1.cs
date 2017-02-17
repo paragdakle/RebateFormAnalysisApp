@@ -12,20 +12,41 @@ using System.Windows.Forms;
 
 namespace Asg3_pxd160530
 {
-    public partial class Form1 : Form
+    /// <remarks>
+    /// Author: Parag Pravin Dakle
+    /// Course: Human Computer Interaction CS 6326 Spring 2017
+    /// Net ID: pxd160530
+    /// </remarks>
+    /// <summary>
+    /// <c>partial class MainForm</c>
+    /// This class consists of methods and event handlers interacting with the UI and consuming other lower layer classes.
+    /// </summary>
+    public partial class MainForm : Form
     {
+        /// <summary>
+        /// Section consists of various variable declarations.
+        /// </summary>
         Dictionary<string, Buyer> buyerDictionary;
         Dictionary<int, AnalysisResultItem> analysisResultDictionary;
         string buyerFileName = "";
         int hasAddedRecord = 0;
 
-        public Form1()
+        /// <summary>
+        /// Default constructor of the main class.
+        /// Create the a dictionary to store buyers and a dictionary to store analysis results.
+        /// </summary>
+        public MainForm()
         {
             InitializeComponent();
             buyerDictionary = new Dictionary<string, Buyer>();
             analysisResultDictionary = new Dictionary<int, AnalysisResultItem>();
         }
 
+        /// <summary>
+        /// Method initializes the form by resetting all the controls. 
+        /// Disables/Enables all buttons.
+        /// Gives the focus to the first control.
+        /// </summary>
         private void initializeForm()
         {
             ctlFilePath.Text = "";
@@ -39,7 +60,14 @@ namespace Asg3_pxd160530
             }
         }
 
-        private void ctlOpenFile_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Open file browse button click event handler method.
+        /// Starts the OpenFileDialog and get the file path of the file selected.
+        /// Displayes this path in a TextBox.
+        /// </summary>
+        /// <param name="sender">The object whose click event is being handled</param>
+        /// <param name="e">EventArgs object.</param>
+        private void ctlOpenFileBrowse_Click(object sender, EventArgs e)
         {
             if (hasAddedRecord == 4)
             {
@@ -86,7 +114,7 @@ namespace Asg3_pxd160530
 
 
         /// <summary>
-        /// Method saves the records present in the buyer dictionary on the storage media.
+        /// Method saves the records present in the analysis results dictionary on the storage media.
         /// <see cref="RecordManager{S, T}"/>
         /// <seealso cref="RecordManager{S, T}.writeRecords(Dictionary{S, T})"/>
         /// </summary>
@@ -127,7 +155,7 @@ namespace Asg3_pxd160530
         }
 
         /// <summary>
-        /// Method loads the analysis results in a dictionary.
+        /// Method analyzes the buyer records in the buyer dictionary and stores the analysis results in a buyer dictionary.
         /// </summary>
         private void loadAnalysisResults()
         {
@@ -187,6 +215,9 @@ namespace Asg3_pxd160530
             }
         }
 
+        /// <summary>
+        /// Method populates the list view with analysis records present in the dictionary.
+        /// </summary>
         private void populateListView()
         {
             ctlAnalysisResultsListView.Items.Clear();
@@ -212,16 +243,33 @@ namespace Asg3_pxd160530
             ctlSaveFileAnalysis.Enabled = true;
         }
 
+        /// <summary>
+        /// Method converts string time to double seconds.
+        /// </summary>
+        /// <param name="time">The time as string.</param>
+        /// <returns>Seconds as a double object.</returns>
         private double convertToSeconds(string time)
         {
             return TimeSpan.Parse(time).TotalSeconds;
         }
 
+        /// <summary>
+        /// Method converts double seconds to string time.
+        /// </summary>
+        /// <param name="seconds">The time as seconds.</param>
+        /// <returns>Time as a string object.</returns>
         private string convertToString(double seconds)
         {
             return TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss");
         }
 
+        /// <summary>
+        /// Save file button click event handler method.
+        /// Starts the SaveFileDialog and get the path and file name to save analysis records.
+        /// Saves all the analysis results to a file.
+        /// </summary>
+        /// <param name="sender">The object whose click event is being handled</param>
+        /// <param name="e">EventArgs object.</param>
         private void ctlSaveAnalysis_Click(object sender, EventArgs e)
         {
             if (hasAddedRecord == 4)
@@ -245,12 +293,26 @@ namespace Asg3_pxd160530
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Form load event handler method.
+        /// Initializes the form controls <see cref="MainForm.initializeForm"/>;
+        /// </summary>
+        /// <param name="sender">The object whose on load event is being handled</param>
+        /// <param name="e">EventArgs object.</param>
+        private void MainForm_Load(object sender, EventArgs e)
         {
             initializeForm();
         }
 
-        private void ctlOpenFile_Click_1(object sender, EventArgs e)
+        /// <summary>
+        /// Open file button click event handler method.
+        /// Loads the records in a dictionary <see cref="MainForm.loadRecords"/>;
+        /// Compute and load the analysis results in a dictionary <see cref="MainForm.loadAnalysisResults"/>;
+        /// Populates the list view with loaded analysis result data <see cref="MainForm.populateListView"/>.
+        /// </summary>
+        /// <param name="sender">The object whose click event is being handled</param>
+        /// <param name="e">EventArgs object.</param>
+        private void ctlOpenFile_Click(object sender, EventArgs e)
         {
             if (hasAddedRecord == 4)
             {
@@ -287,6 +349,12 @@ namespace Asg3_pxd160530
             }
         }
 
+        /// <summary>
+        /// TextChange event handler method.
+        /// Updates the buyer records file path.
+        /// </summary>
+        /// <param name="sender">The object whose TextChange event is being handled</param>
+        /// <param name="e">EventArgs object.</param>
         private void ctlFilePath_TextChanged(object sender, EventArgs e)
         {
             buyerFileName = ctlFilePath.Text;

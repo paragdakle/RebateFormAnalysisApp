@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace Asg3_pxd160530.Utils
 {
+    /// <remarks>
+    /// Author: Parag Pravin Dakle
+    /// Course: Human Computer Interaction CS 6326 Spring 2017
+    /// Net ID: pxd160530
+    /// </remarks>
+    /// <summary>
+    /// <c>static class Constants</c>
+    /// The class contains all the constants used in the application.
+    /// </summary>
     static class Constants
     {
+        /// <summary>
+        /// Section contains string labels for various types of analysis results.
+        /// </summary>
         public static string NUMBER_OF_RECORDS_LABEL = "Number of records";
 
         public static string MIN_ENTRY_TIME = "Minimum entry time";

@@ -17,6 +17,9 @@ namespace Asg3_pxd160530.Entitiy
     /// </summary>
     class Buyer
     {
+        /// <summary>
+        /// Default constructor of the class.
+        /// </summary>
         public Buyer()
         {
             firstName = middleInitial = lastName = addressLine1 = addressLine2 = city = state = zipCode = phoneNumber = email = dateReceived = creationStartTime = creationEndTime = "";
@@ -24,6 +27,10 @@ namespace Asg3_pxd160530.Entitiy
             proofOfPurchase = true;
         }
 
+        /// <summary>
+        /// Copy constructor of the Buyer class.
+        /// </summary>
+        /// <param name="buyer"></param>
         public Buyer(Buyer buyer)
         {
             firstName = buyer.firstName;
@@ -42,6 +49,12 @@ namespace Asg3_pxd160530.Entitiy
             creationEndTime = buyer.creationEndTime;
             creationErrorCount = buyer.creationErrorCount;
         }
+
+        /// <summary>
+        /// Method populates the buyer details from a string record..
+        /// </summary>
+        /// <param name="csvEntry">The buyer record in a string format.</param>
+        /// <returns></returns>
         public bool populateBuyer(string csvEntry)
         {
             string[] elements = csvEntry.Split(csvSeparator);
@@ -67,8 +80,14 @@ namespace Asg3_pxd160530.Entitiy
             return false;
         }
 
+        /// <summary>
+        /// The field separator to use while storing records.
+        /// </summary>
         readonly char csvSeparator = '\t';
 
+        /// <summary>
+        /// Section consists of various buyer attributes.
+        /// </summary>
         public string firstName { get; set; }
 
         public string middleInitial { get; set; }
@@ -99,11 +118,19 @@ namespace Asg3_pxd160530.Entitiy
 
         public int creationErrorCount { get; set; }
 
+        /// <summary>
+        /// Method generates the full name of the buyer.
+        /// </summary>
+        /// <returns>The full name as a string object.</returns>
         public string getFullName()
         {
             return firstName + " " + middleInitial + " " + lastName;
         }
 
+        /// <summary>
+        /// Method overrides the base class ToString() method. The generates a complete buyer record as a string.
+        /// </summary>
+        /// <returns>The buyer details as a string object.</returns>
         public override string ToString()
         {
             return firstName + csvSeparator + lastName + csvSeparator + middleInitial + csvSeparator + 
